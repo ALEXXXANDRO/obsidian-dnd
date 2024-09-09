@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: " :ocean: Синие воды",
+    pageTitle: "🌊 Синие воды",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
