@@ -93,7 +93,7 @@ svg {
   user-select: none;
 
   & div > a {
-    color: var(--secondary);
+    color: var(--dark);
     font-family: var(--headerFont);
     font-size: 0.95rem;
     font-weight: $semiBoldWeight;
@@ -102,7 +102,7 @@ svg {
   }
 
   & div > a:hover {
-    color: var(--tertiary);
+    color: var(--dark);
   }
 
   & div > button {
@@ -120,7 +120,7 @@ svg {
     & span {
       font-size: 0.95rem;
       display: inline-block;
-      color: var(--secondary);
+      color: var(--dark);
       font-weight: $semiBoldWeight;
       margin: 0;
       line-height: 1.5rem;
@@ -131,7 +131,7 @@ svg {
 
 .folder-icon {
   margin-right: 5px;
-  color: var(--secondary);
+  color: var(--dark);
   cursor: pointer;
   transition: transform 0.3s ease;
   backface-visibility: visible;
@@ -142,7 +142,7 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
 }
 
 .folder-icon:hover {
-  color: var(--tertiary);
+  color: var(--dark);
 }
 
 .no-background::after {

@@ -20,6 +20,10 @@
     white-space: nowrap;
     width: 100%;
     justify-content: space-between;
+    background-color: rgba(51, 44, 44, 0.55); /* Полупрозрачный черный фон для текста */
+    padding: 20px;
+    border-radius: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 
     & > p {
       display: inline;
