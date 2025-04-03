@@ -9,19 +9,15 @@ permissions:
   id-token: write
   contents: read
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true  
-
 jobs:
   build:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4  
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4  
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -29,10 +25,15 @@ jobs:
         run: npm ci
 
       - name: Build Quartz
-        run: npx quartz build
+        run: npx quartz build  
+        
+      - name: List files
+        run: ls -la public
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public  
 
   deploy:
     needs: build
@@ -43,4 +44,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3  
+        uses: actions/deploy-pages@v3
