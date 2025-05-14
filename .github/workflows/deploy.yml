@@ -1,43 +1,38 @@
 name: Deploy Quartz site to GitHub Pages
-
+ 
 on:
   push:
     branches:
       - v4
-
+ 
 permissions:
   contents: read
   pages: write
   id-token: write
-
+ 
 concurrency:
   group: "pages"
-  cancel-in-progress: true  # Отменяет предыдущие запуски
-
+  cancel-in-progress: false
+ 
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          
-      - uses: actions/setup-node@v4  # Обновлено до v4
+          fetch-depth: 0 # Fetch all history for git info
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20.5.0
-          
+          node-version: 22
       - name: Install Dependencies
         run: npm ci
-          
       - name: Build Quartz
         run: npx quartz build
-          
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: quartz-site  # Явное имя артефакта
           path: public
-
+ 
   deploy:
     needs: build
     environment:
@@ -45,13 +40,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact  # Новый шаг
-        uses: actions/download-artifact@v4
-        with:
-          name: quartz-site
-          
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
-        with:  # Явное указание папки
-          artifact_name: quartz-site  # Должно совпадать с именем артефакта
+        uses: actions/deploy-pages@v4
